@@ -7,12 +7,14 @@ import OperatorButton from './components/OperatorButton.js';
 
 export default function App() {
 
-  const [firstArgument, setFirstArgument] = useState(0)
-  const [secondArgument, setSecondArgument] = useState(0)
+  const [firstArgument, setFirstArgument] = useState("0")
+  const [secondArgument, setSecondArgument] = useState("0")
 
-  const [operator, setOperator] = useState("C")
+  const [operator, setOperator] = useState(" ")
 
-  const [displayValue, setDisplayValue] = useState(0)
+  const [displayValue, setDisplayValue] = useState("0")
+
+  const [inProcess, setInProcess] = useState(false)
 
   return (
 
@@ -27,7 +29,7 @@ export default function App() {
         <View style={styles.buttonRow}>
           <OperatorButton text={"+/-"}></OperatorButton>
           <OperatorButton text={"%"}></OperatorButton>
-          <OperatorButton text={"C"}></OperatorButton>
+          <OperatorButton text={"C"} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></OperatorButton>
           <OperatorButton text={"⌫"}></OperatorButton>
         </View>
 
@@ -39,29 +41,29 @@ export default function App() {
         </View>
 
         <View style={styles.buttonRow}>
-          <NumberButton value={7}></NumberButton>
-          <NumberButton value={8}></NumberButton>
-          <NumberButton value={9}></NumberButton>
+          <NumberButton value={7} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
+          <NumberButton value={8} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
+          <NumberButton value={9} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
           <OperatorButton text={"*"}></OperatorButton>
         </View>
 
         <View style={styles.buttonRow}>
-          <NumberButton value={4}></NumberButton>
-          <NumberButton value={5}></NumberButton>
-          <NumberButton value={6}></NumberButton>
+          <NumberButton value={4} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
+          <NumberButton value={5} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
+          <NumberButton value={6} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
           <OperatorButton text={"-"}></OperatorButton>
         </View>
 
       
         <View style={styles.buttonRow}>
-          <NumberButton value={1}></NumberButton>
-          <NumberButton value={2}></NumberButton>
-          <NumberButton value={3}></NumberButton>
+          <NumberButton value={1} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
+          <NumberButton value={2} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
+          <NumberButton value={3} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
           <OperatorButton text={"+"}></OperatorButton>
         </View>
     
         <View style={styles.buttonRow}>
-          <NumberButton value={0} isZero={true}></NumberButton>
+          <NumberButton value={0} isZero={true} firstArgument={firstArgument} setFirstArgument={setFirstArgument} secondArgument={secondArgument} setSecondArgument={setSecondArgument} displayValue={displayValue} setDisplayValue={setDisplayValue} inProcess={inProcess} setInProcess={setInProcess}></NumberButton>
           <OperatorButton text={"."}></OperatorButton>
           <OperatorButton text={"="}></OperatorButton>
         </View>

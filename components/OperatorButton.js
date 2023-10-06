@@ -1,9 +1,23 @@
 import React, {useState} from 'react';
 import { Button, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const OperatorButton = ({ text }) => {
+const OperatorButton = ({ text, firstArgument, setFirstArgument, secondArgument, setSecondArgument, displayValue, setDisplayValue, inProcess, setInProcess}) => {
     const [count, setCount] = useState(0);
-    const onPress = () => setCount(prevCount => prevCount + 1);
+    const onPress = () => {
+        if(text == "C"){
+            setDisplayValue(0);
+            if(!inProcess){
+                setFirstArgument(0);
+            } else {
+                setSecondArgument(0);
+            }
+        } else {
+            // Didn't press the clear button -> some other operator
+
+        }
+    }
+
+    
 
     const inlineTextStyle = {textAlign: "center", color: "white", fontWeight: "bold", fontSize: 16 }
 
