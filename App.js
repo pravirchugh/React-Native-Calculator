@@ -6,12 +6,20 @@ import NumberButton from './components/NumberButton.js'
 import OperatorButton from './components/OperatorButton.js';
 
 export default function App() {
+
+  const [firstArgument, setFirstArgument] = useState(0)
+  const [secondArgument, setSecondArgument] = useState(0)
+
+  const [operator, setOperator] = useState("C")
+
+  const [displayValue, setDisplayValue] = useState(0)
+
   return (
 
     <View style={styles.container}>
 
       <View style={styles.outputWindow}>
-
+        <Text style={{textAlign: "right", marginTop: 90, marginRight: 15, fontSize: 100, color: "white"}}>{displayValue}</Text>
       </View>
 
       <View style={styles.buttonColumn}>
@@ -71,10 +79,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#1A1E31',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 500,
+    paddingTop: 300,
     paddingBottom: 10,
     paddingLeft: 10,
-    paddingRight: 10
+    paddingRight: 10,
+    borderColor: "yellow",
+    borderRadius: 10
     
   },
   buttonRow: {
@@ -88,6 +98,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   outputWindow: {
-    width: 1000
+    width: 399,
+    height: 200,
+    // backgroundColor: "white"
+    
   }
 });
