@@ -21,7 +21,7 @@ export default function App() {
     <View style={styles.container}>
 
       <View style={styles.outputWindow}>
-        <Text style={{textAlign: "right", marginTop: 90, marginRight: 15, fontSize: 100, color: "white"}}>{displayValue}</Text>
+        <Text numberOfLines={1} ellipsizeMode="tail" style={{textAlign: "right", marginTop: 90, marginRight: 15, fontSize: 80, color: "white"}}>{displayValue}</Text>
       </View>
 
       <View style={styles.buttonColumn}>

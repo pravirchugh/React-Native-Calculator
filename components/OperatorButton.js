@@ -55,10 +55,35 @@ const OperatorButton = ({ text, firstArgument, setFirstArgument, secondArgument,
             } else {
                 setSecondArgument(1 / secondArgument);
             }
+        } else if(text == "x²"){
+
+            let temporaryValue = Number(displayValue) * Number(displayValue);
+
+            if(temporaryValue <= Math.floor(temporaryValue) + 0.0000001){ // this accounts for a precision error 
+                temporaryValue = Math.floor(temporaryValue);
+            }
+            if(temporaryValue >= Math.ceil(temporaryValue) - 0.0000001){ // this accounts for a precision error 
+                temporaryValue = Math.ceil(temporaryValue);
+            }
+
+            setDisplayValue((temporaryValue).toString());
+            if(!inProcess){
+                setFirstArgument(temporaryValue);
+            } else {
+                setSecondArgument(temporaryValue);
+            }
+        } else if(text == "√"){
+
+            setDisplayValue((Math.sqrt(Number(displayValue))).toString());
+            if(!inProcess){
+                setFirstArgument(firstArgument * firstArgument);
+            } else {
+                setSecondArgument(secondArgument * secondArgument);
+            }
         }
         
         else {
-            // Pressed some other operator
+            // Pressed one of the four following operators: + - * /
             
         }
     }
