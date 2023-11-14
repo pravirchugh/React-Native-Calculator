@@ -4,15 +4,22 @@ import { Button, Text, TouchableOpacity, StyleSheet, View } from 'react-native';
 const NumberButton = ({ value, isZero, firstArgument, setFirstArgument, secondArgument, setSecondArgument, displayValue, setDisplayValue, inProcess, setInProcess}) => {
     const [count, setCount] = useState(0);
     const onPress = () => {
+    
+        console.log(displayValue + " " + firstArgument + " " + secondArgument)
         
        if(!inProcess){
-        
+    
         
         if(displayValue == "0" && firstArgument == "0"){
             
+
+            console.log(1);
             setFirstArgument(value.toString());
             setDisplayValue(value.toString());
+
+            
         } else {
+            console.log(2);
             setFirstArgument(firstArgument + value.toString());
             setDisplayValue(displayValue + value.toString());
         }
@@ -20,14 +27,16 @@ const NumberButton = ({ value, isZero, firstArgument, setFirstArgument, secondAr
 
         
        } else {
-        if(displayValue == "0" && secondArgument == "0"){
-            setSecondArgument(value.toString());
-            setDisplayValue(value.toString());
-        } else {
-            setSecondArgument(secondArgument + value.toString());
-            setDisplayValue(displayValue + value.toString());
-        }
-        
+            if(secondArgument == "0"){
+                console.log(3)
+                setSecondArgument(value.toString());
+                setDisplayValue(value.toString());
+            } else {
+                console.log(4)
+                setSecondArgument(secondArgument + value.toString());
+                setDisplayValue(displayValue + value.toString());
+            }
+            
        }
 
         setCount(prevCount => prevCount + 1);

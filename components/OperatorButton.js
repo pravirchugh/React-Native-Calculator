@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-const OperatorButton = ({ text, firstArgument, setFirstArgument, secondArgument, setSecondArgument, displayValue, setDisplayValue, inProcess, setInProcess}) => {
+const OperatorButton = ({ text, firstArgument, setFirstArgument, secondArgument, setSecondArgument, displayValue, setDisplayValue, inProcess, setInProcess, operator, setOperator }) => {
     const [count, setCount] = useState(0);
     const onPress = () => {
         if(text == "C"){
@@ -83,8 +83,49 @@ const OperatorButton = ({ text, firstArgument, setFirstArgument, secondArgument,
         }
         
         else {
-            // Pressed one of the four following operators: + - * /
+            // Pressed one of the four following operators: + - * / OR =
             
+            if(text == "="){
+                // EVALUATE
+                setInProcess(false);
+                if(operator == '+' || operator == "-" || operator == "*" || operator =="/"){
+                    switch (operator) {
+                      case "+":
+                        setDisplayValue((parseFloat(firstArgument) + parseFloat(secondArgument)).toString());
+                        setFirstArgument((parseFloat(firstArgument) + parseFloat(secondArgument)).toString());
+                        setSecondArgument(0);
+                        break;
+              
+                      case "-":
+                        setDisplayValue((parseFloat(firstArgument) - parseFloat(secondArgument)).toString());
+                        setFirstArgument((parseFloat(firstArgument) - parseFloat(secondArgument)).toString());
+                        setSecondArgument(0);
+                        break;
+              
+                      case "*":
+                        setDisplayValue((parseFloat(firstArgument) * parseFloat(secondArgument)).toString());
+                        setFirstArgument((parseFloat(firstArgument) * parseFloat(secondArgument)).toString());
+                        setSecondArgument(0);
+                        break;
+              
+                      case "/":
+                        setDisplayValue((parseFloat(firstArgument) / parseFloat(secondArgument)).toString());
+                        setFirstArgument((parseFloat(firstArgument) / parseFloat(secondArgument)).toString());
+                        setSecondArgument(0);
+                        break;
+                    
+                      default:
+                        break;
+                    }
+                  }
+            } else {
+                // text == one of the four operators
+                setOperator(text);
+                setInProcess(true);
+        
+                setSecondArgument(0);
+                setFirstArgument(displayValue);
+            }
         }
     }
 
