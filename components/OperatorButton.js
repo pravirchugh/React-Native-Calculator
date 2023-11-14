@@ -11,9 +11,55 @@ const OperatorButton = ({ text, firstArgument, setFirstArgument, secondArgument,
             } else {
                 setSecondArgument(0);
             }
-        } else {
-            // Didn't press the clear button -> some other operator
+        } else if(text == "⌫"){
 
+            if(displayValue.length == 1){
+                setDisplayValue(0);
+                if(!inProcess){
+                    setFirstArgument(0);
+                } else {
+                    setSecondArgument(0);
+                }
+            } else if(displayValue != 0){
+                setDisplayValue(displayValue.substring(0,  displayValue.length - 1))
+                if(!inProcess){
+                    setFirstArgument(0);
+                } else {
+                    setSecondArgument(0);
+                }
+            } else if(displayValue == 0){
+                setDisplayValue(0);
+            }
+        } else if(text == "+/-"){
+            setDisplayValue((-1 * Number(displayValue)).toString());
+            if(!inProcess){
+                setFirstArgument(-1 * firstArgument);
+            } else {
+                setSecondArgument(-1 * secondArgument);
+            }
+
+        } else if(text == "."){
+            setDisplayValue(displayValue + ".");
+        } else if(text == "%"){
+            setDisplayValue((0.01 * Number(displayValue)).toString());
+            if(!inProcess){
+                setFirstArgument(0.01 * firstArgument);
+            } else {
+                setSecondArgument(0.01 * secondArgument);
+            }
+
+        } else if(text == "1/x"){
+            setDisplayValue((1 / Number(displayValue)).toString());
+            if(!inProcess){
+                setFirstArgument(1 / firstArgument);
+            } else {
+                setSecondArgument(1 / secondArgument);
+            }
+        }
+        
+        else {
+            // Pressed some other operator
+            
         }
     }
 
