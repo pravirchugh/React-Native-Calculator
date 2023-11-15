@@ -17,12 +17,14 @@ const OperatorButton = ({
   const [count, setCount] = useState(0);
   const onPress = () => {
     if (text == "C") {
+
+      // full reset of computation
+      
       setDisplayValue(0);
-      if (!inProcess) {
-        setFirstArgument(0);
-      } else {
-        setSecondArgument(0);
-      }
+      setFirstArgument(0);
+      setSecondArgument(0);
+      setInProcess(false);
+      
     } else if (text == "⌫") {
       if (displayValue.length == 1) {
         setDisplayValue(0);
@@ -213,11 +215,18 @@ const OperatorButton = ({
           // case 1: inProcess = false before the second + is registered
           // case 2: inProcess = true before the second + is registered
 
-        setOperator(text);
-        setInProcess(true);
+        
+        if(!inProcess){ // case 1
+          setOperator(text);
+          setInProcess(true);
 
-        setSecondArgument(0);
-        setFirstArgument(displayValue);
+          setSecondArgument(0);
+          setFirstArgument(displayValue);
+        } else { // case 2
+          
+          console.log(displayValue + " " + firstArgument + " " + secondArgument)
+
+        }
       }
     }
   };
