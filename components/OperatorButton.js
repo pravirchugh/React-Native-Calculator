@@ -211,13 +211,16 @@ const OperatorButton = ({
           }
         }
       } else {
-        // text == one of the four operators. Two cases: either 5+6 = 11 + 3 = 14, or 5 + 6 + 3 = 14 (repeated ops)
+        // text == one of the four operators. Now, we have two cases: either 5+6 = 11 + 3 = 14, or 5 + 6 + 3 = 14 (repeated ops)
           // case 1: inProcess = false before the second + is registered
           // case 2: inProcess = true before the second + is registered
 
+
+        // regardless of which case, the current operator is always going to be the button pressed
+        setOperator(text);
         
         if(!inProcess){ // case 1
-          setOperator(text);
+          
           setInProcess(true);
 
           setSecondArgument(0);
@@ -225,6 +228,73 @@ const OperatorButton = ({
         } else { // case 2
           
           console.log(displayValue + " " + firstArgument + " " + secondArgument)
+          // we want firstArgument to become => (firstArgument OPERATOR secondArgument)
+          // secondArgument becomes 0
+          // displayValue can become firstArgument, with inProcess still being true
+
+          if(operator == "+"){
+
+              // even here, we still should account for slight rounding errors
+              temporaryValue = parseFloat(firstArgument) + parseFloat(secondArgument);
+              if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+              }
+              if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+              }
+
+              setFirstArgument(temporaryValue);
+              setDisplayValue(temporaryValue);
+              setSecondArgument(0);
+
+          } else if(operator == "-"){
+            // even here, we still should account for slight rounding errors
+            temporaryValue = parseFloat(firstArgument) - parseFloat(secondArgument);
+            if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+              // this accounts for a precision error
+              temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+            }
+            if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+              // this accounts for a precision error
+              temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+            }
+
+            setFirstArgument(temporaryValue);
+            setDisplayValue(temporaryValue);
+            setSecondArgument(0);
+          } else if(operator == "*"){
+            // even here, we still should account for slight rounding errors
+            temporaryValue = parseFloat(firstArgument) * parseFloat(secondArgument);
+            if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+              // this accounts for a precision error
+              temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+            }
+            if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+              // this accounts for a precision error
+              temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+            }
+
+            setFirstArgument(temporaryValue);
+            setDisplayValue(temporaryValue);
+            setSecondArgument(0);
+          } else { // division
+            // even here, we still should account for slight rounding errors
+            temporaryValue = parseFloat(firstArgument) / parseFloat(secondArgument);
+            if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+              // this accounts for a precision error
+              temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+            }
+            if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+              // this accounts for a precision error
+              temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+            }
+
+            setFirstArgument(temporaryValue);
+            setDisplayValue(temporaryValue);
+            setSecondArgument(0);
+          }
 
         }
       }
