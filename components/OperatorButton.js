@@ -50,6 +50,11 @@ const OperatorButton = ({
       }
     } else if (text == ".") {
       setDisplayValue(displayValue + ".");
+      if (!inProcess) {
+        setFirstArgument(firstArgument + ".");
+      } else {
+        setSecondArgument(secondArgument + ".");
+      }
     } else if (text == "%") {
       setDisplayValue((0.01 * Number(displayValue)).toString());
       if (!inProcess) {
@@ -95,6 +100,7 @@ const OperatorButton = ({
       if (text == "=") {
         // EVALUATE
         setInProcess(false);
+        let temporaryValue = 0;
         if (
           operator == "+" ||
           operator == "-" ||
@@ -103,56 +109,96 @@ const OperatorButton = ({
         ) {
           switch (operator) {
             case "+":
+              temporaryValue = parseFloat(firstArgument) + parseFloat(secondArgument);
+              if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+              }
+              if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+              }
+              
               setDisplayValue(
                 (
-                  parseFloat(firstArgument) + parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setFirstArgument(
                 (
-                  parseFloat(firstArgument) + parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setSecondArgument(0);
               break;
 
             case "-":
+              temporaryValue = parseFloat(firstArgument) - parseFloat(secondArgument);
+              if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+              }
+              if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+              }
+              
               setDisplayValue(
                 (
-                  parseFloat(firstArgument) - parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setFirstArgument(
                 (
-                  parseFloat(firstArgument) - parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setSecondArgument(0);
               break;
 
             case "*":
+              temporaryValue = parseFloat(firstArgument) * parseFloat(secondArgument);
+              if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+              }
+              if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+              }
+              
               setDisplayValue(
                 (
-                  parseFloat(firstArgument) * parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setFirstArgument(
                 (
-                  parseFloat(firstArgument) * parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setSecondArgument(0);
               break;
 
             case "/":
+              temporaryValue = parseFloat(firstArgument) / parseFloat(secondArgument);
+              if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.floor(temporaryValue * 1000) / 1000;
+              }
+              if (temporaryValue * 1000 >= Math.ceil(temporaryValue * 1000) - 0.0000001) {
+                // this accounts for a precision error
+                temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
+              }
+              
               setDisplayValue(
                 (
-                  parseFloat(firstArgument) / parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setFirstArgument(
                 (
-                  parseFloat(firstArgument) / parseFloat(secondArgument)
+                  temporaryValue
                 ).toString()
               );
               setSecondArgument(0);

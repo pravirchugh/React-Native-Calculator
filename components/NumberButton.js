@@ -36,6 +36,8 @@ const NumberButton = ({
         // console.log(4);
         setSecondArgument(secondArgument + value.toString());
         setDisplayValue(displayValue + value.toString());
+
+        console.log(secondArgument);
       }
     }
 
