@@ -180,7 +180,7 @@ const OperatorButton = ({
               setSecondArgument(0);
               break;
 
-            case "/":
+            case "÷":
               temporaryValue = parseFloat(firstArgument) / parseFloat(secondArgument);
               if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
                 // this accounts for a precision error
@@ -209,7 +209,10 @@ const OperatorButton = ({
           }
         }
       } else {
-        // text == one of the four operators
+        // text == one of the four operators. Two cases: either 5+6 = 11 + 3 = 14, or 5 + 6 + 3 = 14 (repeated ops)
+          // case 1: inProcess = false before the second + is registered
+          // case 2: inProcess = true before the second + is registered
+
         setOperator(text);
         setInProcess(true);
 
@@ -223,7 +226,7 @@ const OperatorButton = ({
     textAlign: "center",
     color: "white",
     fontWeight: "bold",
-    fontSize: 16,
+    fontSize: 20,
   };
 
   return (
