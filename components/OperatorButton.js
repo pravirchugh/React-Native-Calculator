@@ -107,9 +107,10 @@ const OperatorButton = ({
           operator == "+" ||
           operator == "-" ||
           operator == "*" ||
-          operator == "/"
+          operator == "÷"
         ) {
           switch (operator) {
+            
             case "+":
               temporaryValue = parseFloat(firstArgument) + parseFloat(secondArgument);
               if (temporaryValue * 1000 <= Math.floor(temporaryValue * 1000) + 0.0000001) {
@@ -193,6 +194,7 @@ const OperatorButton = ({
                 temporaryValue = Math.ceil(temporaryValue * 1000) / 1000;
               }
               
+              
               setDisplayValue(
                 (
                   temporaryValue
@@ -227,7 +229,7 @@ const OperatorButton = ({
           setFirstArgument(displayValue);
         } else { // case 2
           
-          console.log(displayValue + " " + firstArgument + " " + secondArgument)
+          
           // we want firstArgument to become => (firstArgument OPERATOR secondArgument)
           // secondArgument becomes 0
           // displayValue can become firstArgument, with inProcess still being true

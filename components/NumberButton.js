@@ -15,29 +15,29 @@ const NumberButton = ({
 }) => {
   const [count, setCount] = useState(0);
   const onPress = () => {
-    // console.log(displayValue + " " + firstArgument + " " + secondArgument)
+    
 
     if (!inProcess) {
       if (displayValue == "0" && firstArgument == "0") {
-        // console.log(1);
+        
         setFirstArgument(value.toString());
         setDisplayValue(value.toString());
       } else {
-        // console.log(2);
+        
         setFirstArgument(firstArgument + value.toString());
         setDisplayValue(displayValue + value.toString());
       }
     } else {
       if (secondArgument == "0") {
-        // console.log(3);
+      
         setSecondArgument(value.toString());
         setDisplayValue(value.toString());
       } else {
-        // console.log(4);
+      
         setSecondArgument(secondArgument + value.toString());
         setDisplayValue(displayValue + value.toString());
 
-        // console.log(secondArgument);
+     
       }
     }
 
